@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-4">
+        <h2 class="text-center mb-4">Add Doctor</h2>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Doctor Name</label>
+                <input type="text" class="form-control"  name="name" required>
+            </div>
+            <div class="form-group">
+                <label>Contact</label>
+                <input type="text" class="form-control"  name="contact" required>
+            </div>
+            <div class="form-group">
+                <label>Specialization</label>
+                <input type="text" class="form-control" id="pwd" name="special" required>
+            </div>
+
+            <input type="submit" value="Submit" class="form-control btn btn-primary">
+        </form>
+        </div>
+    </div>
+{% if error == 'no' %}
+<script>
+    alert('Record saved successfully');
+    window.location = ({%url 'view_doctor' %});
+</script>
+{% endif %}
+{% if error == 'yes' %}
+<script>
+    alert('Something went wrong,Try again');
+</script>
+{% endif %}
+
+{% endblock %}
